@@ -141,7 +141,7 @@ export default function OrbitGlobe({
     const frame = (now) => {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
-      const paused = reduce || (pauseOnHover && S.hover);
+      const paused = reduce;
       if (!paused && !S.dragging) {
         S.yaw += rad(rotationSpeed) * dt;
         S.orbit += rad(orbitSpeed) * dt;
