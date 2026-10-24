@@ -62,7 +62,7 @@ export default function OrbitGlobe({
   activeIndex,              // controlled active badge (index). omit for uncontrolled
   defaultActiveIndex = 0,
   autoCycle = 3200,         // ms between auto-selected badges, 0 to disable
-  pauseOnHover = true,
+  pauseOnHover = false,       // true: hovering stops globe + badge rotation
   draggable = true,
   onActiveChange,
   className = '',
@@ -141,7 +141,7 @@ export default function OrbitGlobe({
     const frame = (now) => {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
-      const paused = reduce;
+      const paused = reduce || (pauseOnHover && S.hover);
       if (!paused && !S.dragging) {
         S.yaw += rad(rotationSpeed) * dt;
         S.orbit += rad(orbitSpeed) * dt;

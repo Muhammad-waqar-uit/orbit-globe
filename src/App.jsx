@@ -27,6 +27,7 @@ export default function App() {
   const [url, setUrl] = useState('');
   const [cfg, setCfg] = useState({ size: 360, rotationSpeed: 6, orbitSpeed: 14, tilt: 18, orbitRadius: 1.08, badgeSize: 56, dotSize: 1.6 });
   const [dotColor, setDotColor] = useState('#334155');
+  const [pauseOnHover, setPauseOnHover] = useState(false);
   const set = (k) => (v) => setCfg((c) => ({ ...c, [k]: v }));
   const current = logos[idx];
 
@@ -35,7 +36,7 @@ export default function App() {
       <h2 style={{ fontFamily: 'Georgia, serif', fontWeight: 400, fontSize: 36, textAlign: 'center', margin: 0 }}>{current?.label}</h2>
       <p style={{ textAlign: 'center', color: '#6b7280', fontSize: 20, lineHeight: 1.6, minHeight: 160 }}>{copy[current?.id] ?? 'Custom data source.'}</p>
 
-      <OrbitGlobe logos={logos} {...cfg} size={Math.min(cfg.size, 480)} dotColor={dotColor} activeIndex={idx} onActiveChange={setIdx} />
+      <OrbitGlobe logos={logos} {...cfg} size={Math.min(cfg.size, 480)} dotColor={dotColor} pauseOnHover={pauseOnHover} activeIndex={idx} onActiveChange={setIdx} />
 
       <section style={{ marginTop: 40, display: 'grid', gap: 10, padding: 16, border: '1px solid #e5e7eb', borderRadius: 12 }}>
         <strong>Customize</strong>
@@ -47,6 +48,10 @@ export default function App() {
         <Slider label="Badge size" value={cfg.badgeSize} set={set('badgeSize')} min={32} max={80} />
         <Slider label="Dot size" value={cfg.dotSize} set={set('dotSize')} min={1} max={3} step={0.1} />
         <label style={{ fontSize: 13 }}>Dot color <input type="color" value={dotColor} onChange={(e) => setDotColor(e.target.value)} /></label>
+        <label style={{ fontSize: 13, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <input type="checkbox" checked={pauseOnHover} onChange={(e) => setPauseOnHover(e.target.checked)} />
+          Pause on hover
+        </label>
         <div style={{ display: 'flex', gap: 8 }}>
           <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Logo image URL" style={{ flex: 1, padding: 8, border: '1px solid #d1d5db', borderRadius: 8 }} />
           <button
