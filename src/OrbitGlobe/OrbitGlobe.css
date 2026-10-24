@@ -1,0 +1,15 @@
+.og-root { position: relative; margin: 0 auto; user-select: none; -webkit-user-select: none; cursor: grab; }
+.og-root:active { cursor: grabbing; }
+.og-canvas { position: absolute; inset: 0; display: block; pointer-events: none; }
+.og-badge {
+  position: absolute; left: 0; top: 0; padding: var(--og-pad); border: 0; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer; will-change: transform, opacity;
+  outline: none; transition: border-color .25s;
+  border: 2px solid transparent; background-clip: padding-box;
+}
+.og-badge.is-active { border-color: var(--og-ring); }
+.og-badge:focus-visible { outline: 2px solid #2563eb; outline-offset: 3px; }
+.og-face { width: 100%; height: 100%; display: block; }
+.og-img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; pointer-events: none; }
+.og-emoji { font-size: var(--og-font); line-height: 1; }
+.og-text { font-weight: 800; font-size: var(--og-font); letter-spacing: -.02em; line-height: 1; }
